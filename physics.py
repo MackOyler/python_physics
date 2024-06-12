@@ -14,4 +14,14 @@ def run(window, width, height):
     fps = 60
     
     while run:
-        clock.tick()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+                break
+        
+        clock.tick(fps)
+        
+pygame.quit()
+
+if __name__ == "__main__":
+    run(window, WIDTH, HEIGHT)
