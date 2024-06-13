@@ -21,6 +21,12 @@ def create_boundaries(space, width, height):
         [(10, height/2), (20, height)],
         [(width - 10, height/2), (20, height)]
     ]
+    
+    for pos, size in rects:
+        body = pymunk.Body(body_type=pymunk.Body.STATIC)
+        body.position = pos
+        shape = pymunk.Poly.create_box(body, size)
+        space.add(body, shape)
 
 def create_ball(space, radius, mass):
     body = pymunk.Body()
@@ -41,6 +47,7 @@ def run(window, width, height):
     space.gravity = (0, 981)
     
     ball = create_ball(space, 30, 10)
+    create_boundaries(space, width, height)
     
     draw_options = pymunk.pygame_util.DrawOptions(window)
     
