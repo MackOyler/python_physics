@@ -14,6 +14,15 @@ def draw(space, window, draw_options):
     space.debug_draw(draw_options)
     pygame.display.update()
 
+def create_ball(space, radius, mass):
+    body = pymunk.Body()
+    body.position = (300, 300)
+    shape = pymunk.Circle(body, radius)
+    shape.mass = mass
+    shape.color = (255, 0, 0, 100)
+    space.add(body, shape)
+    return shape
+
 def run(window, width, height):
     run = True
     clock = pygame.time.Clock()
@@ -22,6 +31,8 @@ def run(window, width, height):
     
     space = pymunk.Space()
     space.gravity = (0, 981)
+    
+    ball = create_ball(space, 30, 10)
     
     draw_options = pymunk.pygame_util.DrawOptions(window)
     
