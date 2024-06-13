@@ -14,6 +14,14 @@ def draw(space, window, draw_options):
     space.debug_draw(draw_options)
     pygame.display.update()
 
+def create_boundaries(space, width, height):
+    rects = [
+        [(width/2, height - 10), (width, 20)],
+        [(width/2, 10), (width, 20)],
+        [(10, height/2), (20, height)],
+        [(width - 10, height/2), (20, height)]
+    ]
+
 def create_ball(space, radius, mass):
     body = pymunk.Body()
     body.position = (300, 300)
