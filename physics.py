@@ -84,7 +84,11 @@ def run(window, width, height):
                     ball = create_ball(space, 30, 10, pressed_pos)
                 elif pressed_pos:
                     ball.body.body_type = pymunk.Body.DYNAMIC
-                    ball.body.apply_impulse_at_local_point((10000, 0), (0, 0))
+                    angle = calculate_angle(*line)
+                    force = calculate_distance(*line) * 50
+                    fx = math.cos(angle) * force
+                    fy = math.sin(angle) * force
+                    ball.body.apply_impulse_at_local_point((fx, fy), (0, 0))
                     pressed_pos = None
                 else:
                     space.remove(ball, ball.body)
